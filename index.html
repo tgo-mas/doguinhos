@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="jquery-ui.css" rel="stylesheet">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <style type="text/css">
+        body{
+            background-color: aquamarine;
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        main{
+            height: fit-content;
+        }
+
+        main img {
+            display: none;
+            border-radius: 20px;
+            border: solid 8px indianred;
+            height: 400px;
+            width: auto;
+        }
+
+        main .spinner{
+            display: none;
+            animation: rotate 2s linear infinite;
+        }
+
+        main .show {
+            display: block;
+        }
+
+        h1{
+            margin-bottom: -20px;
+        }
+
+        .overflow{
+            height: 400px;
+        }
+
+        button{
+            padding: 10px;
+			margin-top: -10px;
+            border-radius: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 500;
+            background-color: indianred;
+            color: white;
+            border-color: white;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0);
+            }
+            100%  {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <title>Doguinhos!</title>
+</head>
+<body>
+    <main>
+        <center><h1 id="title">Para melhorar seu dia:</h1></center><select id="select"><option selected disabled value="redbone">Raças</option></select>
+        <center><div class="spinner" id="doguin">🐶</div>
+        <img id="dog"/><br/>
+        <button id="change-dog">Outro doguinho</button></center>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+		$(function(){
+			$( '#select' )
+				.selectmenu({
+                    change: function(event){
+                        URL = `https://dog.ceo/api/breed/${event.target.value}/images/random`;
+                        setImg();
+                    }
+                })
+				.selectmenu('menuWidget')
+                    .addClass('overflow');
+		});
+
+		$(function (){
+			function position(){
+				$("#select-button").position({
+					of: $("#title"),
+					my: "right center",
+					at: "right center",
+					collision: "none none"
+				})
+			}
+
+			position();
+		});
+	</script>
+</body>
+</html>
